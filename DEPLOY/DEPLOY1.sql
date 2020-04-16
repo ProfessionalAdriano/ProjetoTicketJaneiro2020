@@ -38,21 +38,21 @@ CREATE OR REPLACE PACKAGE APPS.TKT_ATENDIMENTO_PKG IS
                             ,P_CHAMADO              IN     VARCHAR2);
 /*
 +===========================================================================+
-|  APOIO NA SUSTENTACAO:               										|
-|  --------------------- 				                                    |
-|  Objetivo: Enviar solicitação em massa dos casos que por algum motivo		|
-|             nao retornaram para o ERP          							|
-| 																			|
-| PACKAGE SPECIFICATION:													|
-| ----------------------													| 
+|  APOIO NA SUSTENTACAO:               					    |
+|  --------------------- 				                    |
+|  Objetivo: Enviar solicitação em massa dos casos que por algum motivo	    |
+|             nao retornaram para o ERP          			    |
+| 									    |									|
+| PACKAGE SPECIFICATION:						    |
+| ----------------------						    | 
 | Alteracoes: Criacao de procedures sem parametros                          |
-| Data da atualizacao: 06/03/2020 											|
-| Versao V_1																|
-| Obs: Rotina de manutencao automatizada									|
+| Data da atualizacao: 06/03/2020					    | 											|
+| Versao V_1								    |
+| Obs: Rotina de manutencao automatizada				    |
 |                                                                           |
 | NOTES                                                                     |
-| Created by    Adriano Lima												|
-| Date 			06/01/2020								     	            |
+| Created by    Adriano Lima						    |
+| Date 			06/01/2020				            |
 +===========================================================================+
 */							
                             
@@ -64,25 +64,25 @@ CREATE OR REPLACE PACKAGE APPS.TKT_ATENDIMENTO_PKG IS
 --
 /*
 +===========================================================================+
-|  APOIO NA SUSTENTACAO:               										|
-|  --------------------- 				                                    |
+|  APOIO NA SUSTENTACAO:               					    |
+|  --------------------- 				                    |
 |  Objetivo: Alterar o status do processamento na BACEN e CLI quando o      |
-| 			 Bureau retornar com erro para o ERP.							|
-|																			|
-| PACKAGE SPECIFICATION:													|
-| ----------------------													| 
-|													                        |
-| Data da atualizacao: 15/04/2020 											|
-| Versao V_0																|
-| 																			|
-|Obs dos parametros:														|
-|P_PRINCIPAL  	=> CLI ou EST: Abreviação para cliente ou estabelecimento	|
-|P_REQUEST_ID 	=> Id da tabela												|
-|P_STATUS_DESEJ => Status do Processamento									|
+| 			 Bureau retornar com erro para o ERP.		    |
+|									    |										|
+| PACKAGE SPECIFICATION:						    |
+| ----------------------						    | 
+|									    |
+| Data da atualizacao: 15/04/2020 					    |
+| Versao V_0								    |
+| 									    |									|
+|Obs dos parametros:							    |
+|P_PRINCIPAL  	=> CLI ou EST: Abreviação para cliente ou estabelecimento   |
+|P_REQUEST_ID 	=> Id da tabela						    |
+|P_STATUS_DESEJ => Status do Processamento				    |
 |                                                                           |
 | NOTES                                                                     |
-| Created by    Adriano Lima												|
-| Date 			23/03/2020								     	            |
+| Created by    Adriano Lima						    |
+| Date 			23/03/2020					    |
 +===========================================================================+
 */
 
@@ -428,21 +428,21 @@ END;
 
 /*
 +===========================================================================+
-|  APOIO NA SUSTENTACAO:               										|
-|  --------------------- 				                                    |
-|  Objetivo: Enviar solicitação em massa dos casos que por algum motivo		|
-|             nao retornaram para o ERP          							|
-| 																			|
-| PACKAGE BODY:																|
-| -------------																| 
+|  APOIO NA SUSTENTACAO:               					    |
+|  --------------------- 				                    |
+|  Objetivo: Enviar solicitação em massa dos casos que por algum motivo	    |
+|             nao retornaram para o ERP          			    |
+| 									    |										|
+| PACKAGE BODY:								    |
+| -------------								    | 
 | Alteracoes: Criacao de procedures sem parametros                          |
-| Data da atualizacao: 06/03/2020 											|
-| Versao V_1																|
-| Obs: Rotina de manutencao automatizada									|
+| Data da atualizacao: 06/03/2020 					    |
+| Versao V_1								    |
+| Obs: Rotina de manutencao automatizada				    |
 |                                                                           |
 | NOTES                                                                     |
-| Created by    Adriano Lima												|
-| Date 			06/01/2020								     	            |
+| Created by    Adriano Lima						    |
+| Date 			06/01/2020				            |
 +===========================================================================+
 */							
        
@@ -747,31 +747,31 @@ PROCEDURE PROC_SEM_RET_CNPJ AS
   
 /*
 +===========================================================================+
-|  APOIO NA SUSTENTACAO:               										|
-|  --------------------- 				                                    |
+|  APOIO NA SUSTENTACAO:               					    |
+|  --------------------- 				                    |
 |  Objetivo: Alterar o status do processamento na BACEN e CLI quando o      |
-| 			 Bureau retornar com erro para o ERP.							|
-|																			|
-| PACKAGE SPECIFICATION:													|
-| ----------------------													| 
-|													                        |
-| Data da atualizacao: 15/04/2020 											|
-| Versao V_0																|
-| 																			|
-|Obs dos parametros:														|
-|P_PRINCIPAL  	=> CLI ou EST: Abreviação para cliente ou estabelecimento	|
-|P_REQUEST_ID 	=> Id da tabela												|
-|P_STATUS_DESEJ => Status do Processamento									|
+| 			 Bureau retornar com erro para o ERP.		    |
+|									    |										|
+| PACKAGE SPECIFICATION:						    |
+| ----------------------						    | 
+|									    |
+| Data da atualizacao: 15/04/2020 					    |
+| Versao V_0								    |
+| 									    |										|
+|Obs dos parametros:							    |
+|P_PRINCIPAL  	=> CLI ou EST: Abreviação para cliente ou estabelecimento   |
+|P_REQUEST_ID 	=> Id da tabela						    |
+|P_STATUS_DESEJ => Status do Processamento				    |
 |                                                                           |
 | NOTES                                                                     |
-| Created by    Adriano Lima												|
-| Date 			23/03/2020								     	            |
+| Created by    Adriano Lima						    |
+| Date 			23/03/2020					    |
 +===========================================================================+
 */
 
 	CREATE OR REPLACE PROCEDURE TKT_ATENDIMENTO_SINCRONISMO (P_PRINCIPAL    IN VARCHAR2,
-															 P_REQUEST_ID   IN NUMBER,                                                 
-															 P_STATUS_DESEJ IN VARCHAR2)
+								 P_REQUEST_ID   IN NUMBER,                                                 
+							         P_STATUS_DESEJ IN VARCHAR2)
 	AS
 	BEGIN
 	  
