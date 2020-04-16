@@ -12,441 +12,440 @@ CREATE OR REPLACE PACKAGE APPS.TKT_ATENDIMENTO_PKG IS
 */
 
 
-  PROCEDURE TKT_ATENDIMENTO_MSG (P_TIPO                 IN     VARCHAR2
-                                ,P_CHAMADO              IN     VARCHAR2);
+  PROCEDURE TKT_ATENDIMENTO_MSG (P_TIPO                   IN     VARCHAR2
+                                ,P_CHAMADO                IN     VARCHAR2);
 --
-  PROCEDURE TKT_ATENDIMENTO_MSG (P_TIPO                 IN     VARCHAR2
-                                ,P_CORRELATION          IN     NUMBER
-                                ,P_ORIGEM               IN     VARCHAR2);
+  PROCEDURE TKT_ATENDIMENTO_MSG (P_TIPO                   IN     VARCHAR2
+                                ,P_CORRELATION            IN     NUMBER
+                                ,P_ORIGEM                 IN     VARCHAR2);
 --
-  PROCEDURE TKT_ATENDIMENTO_PROC_CONTRATO (P_CHAMADO              IN     VARCHAR2);
+  PROCEDURE TKT_ATENDIMENTO_PROC_CONTRATO (P_CHAMADO      IN     VARCHAR2);
 --
-  PROCEDURE TKT_ATENDIMENTO_PROC_CONTRATO (P_CORRELATION          IN     NUMBER
-                                          ,P_ORIGEM               IN     VARCHAR2);
+  PROCEDURE TKT_ATENDIMENTO_PROC_CONTRATO (P_CORRELATION  IN     NUMBER
+                                          ,P_ORIGEM       IN     VARCHAR2);
 --
-  PROCEDURE TKT_ATENDIMENTO_REQUEST_BUREAU (P_CHAMADO              IN     VARCHAR2);
+  PROCEDURE TKT_ATENDIMENTO_REQUEST_BUREAU (P_CHAMADO     IN     VARCHAR2);
 --
-  PROCEDURE TKT_ATENDIMENTO_REQUEST_BUREAU (P_CORRELATION          IN     NUMBER
-                                           ,P_ORIGEM               IN     VARCHAR2);
+  PROCEDURE TKT_ATENDIMENTO_REQUEST_BUREAU (P_CORRELATION IN     NUMBER
+                                           ,P_ORIGEM      IN     VARCHAR2);
 --
-  PROCEDURE TKT_ATENDIMENTO (ERRBUF                 OUT    VARCHAR2
-                            ,RETCODE                OUT    NUMBER
-                            ,P_OPCAO                IN     NUMBER
-                            ,P_CORRELATION          IN     NUMBER
-                            ,P_ORIGEM               IN     VARCHAR2
-                            ,P_TIPO                 IN     VARCHAR2
-                            ,P_CHAMADO              IN     VARCHAR2);
+  PROCEDURE TKT_ATENDIMENTO (ERRBUF                OUT    VARCHAR2
+                            ,RETCODE               OUT    NUMBER
+                            ,P_OPCAO               IN     NUMBER
+                            ,P_CORRELATION         IN     NUMBER
+                            ,P_ORIGEM              IN     VARCHAR2
+                            ,P_TIPO                IN     VARCHAR2
+                            ,P_CHAMADO             IN     VARCHAR2);
 /*
 +===========================================================================+
-|  APOIO NA SUSTENTACAO:               					    |
-|  --------------------- 				                    |
-|  Objetivo: Enviar solicitação em massa dos casos que por algum motivo	    |
-|             nao retornaram para o ERP          			    |
-| 									    |									|
-| PACKAGE SPECIFICATION:						    |
-| ----------------------						    | 
+|  APOIO NA SUSTENTACAO:                                                    |
+|  ---------------------                                                    |
+|  Objetivo: Enviar solicitação em massa dos casos que por algum motivo     |
+|             nao retornaram para o ERP                                     |
+|                                                                           |
+| PACKAGE SPECIFICATION:                                                    |
+| ----------------------                                                    |
 | Alteracoes: Criacao de procedures sem parametros                          |
-| Data da atualizacao: 06/03/2020					    | 											|
-| Versao V_1								    |
-| Obs: Rotina de manutencao automatizada				    |
+| Data da atualizacao: 06/03/2020                                           |                       |
+| Versao V_1                                                                |
+| Obs: Rotina de manutencao automatizada                                    |
 |                                                                           |
 | NOTES                                                                     |
-| Created by    Adriano Lima						    |
-| Date 			06/01/2020				            |
-+===========================================================================+
-*/							
-                            
-  PROCEDURE PROC_SEM_RET_CNPJ;
-
-  PROCEDURE PROC_SEM_RET_CPF;
-
-  PROCEDURE PROC_SEM_RET_EST;	                                                    
---
-/*
-+===========================================================================+
-|  APOIO NA SUSTENTACAO:               					    |
-|  --------------------- 				                    |
-|  Objetivo: Alterar o status do processamento na BACEN e CLI quando o      |
-| 			 Bureau retornar com erro para o ERP.		    |
-|									    |										|
-| PACKAGE SPECIFICATION:						    |
-| ----------------------						    | 
-|									    |
-| Data da atualizacao: 15/04/2020 					    |
-| Versao V_0								    |
-| 									    |									|
-|Obs dos parametros:							    |
-|P_PRINCIPAL  	=> CLI ou EST: Abreviação para cliente ou estabelecimento   |
-|P_REQUEST_ID 	=> Id da tabela						    |
-|P_STATUS_DESEJ => Status do Processamento				    |
-|                                                                           |
-| NOTES                                                                     |
-| Created by    Adriano Lima						    |
-| Date 			23/03/2020					    |
+| Created by    Adriano Lima                                                |
+| Date      06/01/2020                                                      |
 +===========================================================================+
 */
 
-PROCEDURE TKT_ATENDIMENTO_SINCRONISMO (P_PRINCIPAL    IN VARCHAR2,
-                                       P_REQUEST_ID   IN NUMBER,                                                 
-                                       P_STATUS_DESEJ IN VARCHAR2);
-									   
+  PROCEDURE TKT_PROC_SEM_RET_CNPJ;
+
+  PROCEDURE TKT_PROC_SEM_RET_CPF;
+
+  PROCEDURE TKT_PROC_SEM_RET_EST;
+--
+/*
++===========================================================================+
+|  APOIO NA SUSTENTACAO:                                                    |
+|  ---------------------                                                    |
+|  Objetivo: Alterar o status do processamento na BACEN e CLI quando o      |
+|        Bureau retornar com erro para o ERP.                               |
+|                                                                           |
+| PACKAGE SPECIFICATION:                                                    |
+| ----------------------                                                    |
+|                                                                           |
+| Data da atualizacao: 15/04/2020                                           |
+| Versao V_0                                                                |
+|                                                                           |
+|Obs dos parametros:                                                        |
+|P_PRINCIPAL    => CLI ou EST: Abreviação para cliente ou estabelecimento   |
+|P_REQUEST_ID   => Id da tabela                                             |
+|P_STATUS_DESEJ => Status do Processamento                                  |
+|                                                                           |
+| NOTES                                                                     |
+| Created by    Adriano Lima                                                |
+| Date      23/03/2020                                                      |
++===========================================================================+
+*/
+
+  PROCEDURE TKT_ATENDIMENTO_SINCRONISMO (P_PRINCIPAL    IN VARCHAR2,
+                                         P_REQUEST_ID   IN NUMBER,
+                                         P_STATUS_DESEJ IN VARCHAR2);
+
 
 END TKT_ATENDIMENTO_PKG;
 /
 
-
 CREATE OR REPLACE PACKAGE BODY APPS.TKT_ATENDIMENTO_PKG AS
 
--- PUBLICAR MENSAGEM NA FILA AQ COM APOIO DA TABELA TEMPORÁRIA
-PROCEDURE TKT_ATENDIMENTO_MSG (P_TIPO                 IN     VARCHAR2
-                              ,P_CHAMADO              IN     VARCHAR2) 
-IS
-  CURSOR C IS
-    SELECT VALOR1 CORRELATION,
-           SISTEMA_PEDIDO ORIGEM
-      FROM APPS.TKT_CONTR_CLI_PEDIDO
-     WHERE COMENTARIO = P_CHAMADO;
-   BEGIN
-    FOR R IN C LOOP
-      CASE P_TIPO
-           WHEN 'CLIENTE'          THEN APPS.TKT_AR_BACEN_PKG.PROCESSAR_MENSAGEM (P_SISTEMA_ORIGEM => R.ORIGEM, P_CLIENTE_ID => R.CORRELATION);
-           WHEN 'ESTABELECIMENTO'  THEN APPS.TKT_AR_BACEN_PKG.PROCESSAR_MENSAGEM_ESTAB (P_SISTEMA_ORIGEM => R.ORIGEM, P_ESTABELECIMENTO_ID => R.CORRELATION);
-           WHEN 'CONTRATO'         THEN APPS.TKT_OKC_BACEN_PKG.PROCESSAR_MENSAGEM (P_SISTEMA_ORIGEM => R.ORIGEM, P_CONTRATO_ID => R.CORRELATION);
-      END CASE;
-    END LOOP;
-   COMMIT;
-END;
+	-- PUBLICAR MENSAGEM NA FILA AQ COM APOIO DA TABELA TEMPORÁRIA
+	PROCEDURE TKT_ATENDIMENTO_MSG (P_TIPO                 IN     VARCHAR2
+								  ,P_CHAMADO              IN     VARCHAR2)
+	IS
+	  CURSOR C IS
+		SELECT VALOR1 CORRELATION,
+			   SISTEMA_PEDIDO ORIGEM
+		  FROM APPS.TKT_CONTR_CLI_PEDIDO
+		 WHERE COMENTARIO = P_CHAMADO;
+	   BEGIN
+		FOR R IN C LOOP
+		  CASE P_TIPO
+			   WHEN 'CLIENTE'          THEN APPS.TKT_AR_BACEN_PKG.PROCESSAR_MENSAGEM (P_SISTEMA_ORIGEM => R.ORIGEM, P_CLIENTE_ID => R.CORRELATION);
+			   WHEN 'ESTABELECIMENTO'  THEN APPS.TKT_AR_BACEN_PKG.PROCESSAR_MENSAGEM_ESTAB (P_SISTEMA_ORIGEM => R.ORIGEM, P_ESTABELECIMENTO_ID => R.CORRELATION);
+			   WHEN 'CONTRATO'         THEN APPS.TKT_OKC_BACEN_PKG.PROCESSAR_MENSAGEM (P_SISTEMA_ORIGEM => R.ORIGEM, P_CONTRATO_ID => R.CORRELATION);
+		  END CASE;
+		END LOOP;
+	   COMMIT;
+	END;
 --
--- PUBLICAR MENSAGEM NA FILA AQ AVULSO
-PROCEDURE TKT_ATENDIMENTO_MSG (P_TIPO                 IN     VARCHAR2
-                              ,P_CORRELATION          IN     NUMBER
-                              ,P_ORIGEM               IN     VARCHAR2)
-IS
-  BEGIN
-    CASE P_TIPO
-      WHEN 'CLIENTE'          THEN APPS.TKT_AR_BACEN_PKG.PROCESSAR_MENSAGEM (P_SISTEMA_ORIGEM => P_ORIGEM, P_CLIENTE_ID => P_CORRELATION);
-      WHEN 'ESTABELECIMENTO'  THEN APPS.TKT_AR_BACEN_PKG.PROCESSAR_MENSAGEM_ESTAB (P_SISTEMA_ORIGEM => P_ORIGEM, P_ESTABELECIMENTO_ID => P_CORRELATION);
-      WHEN 'CONTRATO'         THEN APPS.TKT_OKC_BACEN_PKG.PROCESSAR_MENSAGEM (P_SISTEMA_ORIGEM => P_ORIGEM, P_CONTRATO_ID => P_CORRELATION);
-    END CASE;
-    COMMIT;
-END;
+	-- PUBLICAR MENSAGEM NA FILA AQ AVULSO
+	PROCEDURE TKT_ATENDIMENTO_MSG (P_TIPO                 IN     VARCHAR2
+								  ,P_CORRELATION          IN     NUMBER
+								  ,P_ORIGEM               IN     VARCHAR2)
+	IS
+	  BEGIN
+		CASE P_TIPO
+		  WHEN 'CLIENTE'          THEN APPS.TKT_AR_BACEN_PKG.PROCESSAR_MENSAGEM (P_SISTEMA_ORIGEM => P_ORIGEM, P_CLIENTE_ID => P_CORRELATION);
+		  WHEN 'ESTABELECIMENTO'  THEN APPS.TKT_AR_BACEN_PKG.PROCESSAR_MENSAGEM_ESTAB (P_SISTEMA_ORIGEM => P_ORIGEM, P_ESTABELECIMENTO_ID => P_CORRELATION);
+		  WHEN 'CONTRATO'         THEN APPS.TKT_OKC_BACEN_PKG.PROCESSAR_MENSAGEM (P_SISTEMA_ORIGEM => P_ORIGEM, P_CONTRATO_ID => P_CORRELATION);
+		END CASE;
+		COMMIT;
+	END;
 
--- PROCESSAR CONTRATO COM APOIO DA TABELA TEMPORÁRIA
-PROCEDURE TKT_ATENDIMENTO_PROC_CONTRATO (P_CHAMADO              IN     VARCHAR2) 
+	-- PROCESSAR CONTRATO COM APOIO DA TABELA TEMPORÁRIA
+	PROCEDURE TKT_ATENDIMENTO_PROC_CONTRATO (P_CHAMADO              IN     VARCHAR2)
 
-IS
-  CURSOR C IS
-    SELECT VALOR1 CORRELATION,
-           SISTEMA_PEDIDO ORIGEM
-      FROM APPS.TKT_CONTR_CLI_PEDIDO
-     WHERE COMENTARIO = P_CHAMADO;
-   BEGIN
-    FOR R IN C LOOP
-      IF R.ORIGEM IN ('TEP', 'TICKETSHOP') THEN
-        APPS.TKT_OKC_BACEN_PKG.PROCESSAR_TEP_CONTRATO(P_SISTEMA_ORIGEM => R.ORIGEM,
-                                                      P_CONTRATO_ID    => R.CORRELATION);
-      ELSIF R.ORIGEM IN ('SIMULADOR', 'SALESFORCE') THEN
-        APPS.TKT_OKC_BACEN_PKG.PROCESSAR_CN_CONTRATO(P_SISTEMA_ORIGEM => R.ORIGEM,
-                                                     P_CONTRATO_ID    => R.CORRELATION);
-      ELSIF R.ORIGEM = 'NGAT' THEN
-        APPS.TKT_OKC_BACEN_PKG.PROCESSAR_NGAT_CONTRATO(P_SISTEMA_ORIGEM => R.ORIGEM,
-                                                       P_CONTRATO_ID    => R.CORRELATION);
-      END IF;
-    END LOOP;
-  COMMIT;
-END;
+	IS
+	  CURSOR C IS
+		SELECT VALOR1 CORRELATION,
+			   SISTEMA_PEDIDO ORIGEM
+		  FROM APPS.TKT_CONTR_CLI_PEDIDO
+		 WHERE COMENTARIO = P_CHAMADO;
+	   BEGIN
+		FOR R IN C LOOP
+		  IF R.ORIGEM IN ('TEP', 'TICKETSHOP') THEN
+			APPS.TKT_OKC_BACEN_PKG.PROCESSAR_TEP_CONTRATO(P_SISTEMA_ORIGEM => R.ORIGEM,
+														  P_CONTRATO_ID    => R.CORRELATION);
+		  ELSIF R.ORIGEM IN ('SIMULADOR', 'SALESFORCE') THEN
+			APPS.TKT_OKC_BACEN_PKG.PROCESSAR_CN_CONTRATO(P_SISTEMA_ORIGEM => R.ORIGEM,
+														 P_CONTRATO_ID    => R.CORRELATION);
+		  ELSIF R.ORIGEM = 'NGAT' THEN
+			APPS.TKT_OKC_BACEN_PKG.PROCESSAR_NGAT_CONTRATO(P_SISTEMA_ORIGEM => R.ORIGEM,
+														   P_CONTRATO_ID    => R.CORRELATION);
+		  END IF;
+		END LOOP;
+	  COMMIT;
+	END;
 
--- PROCESSAR CONTRATO AVULSO
-PROCEDURE TKT_ATENDIMENTO_PROC_CONTRATO (P_CORRELATION          IN     NUMBER
-                                        ,P_ORIGEM               IN     VARCHAR2) 
-IS
-  BEGIN
-    CASE
-      WHEN P_ORIGEM = 'TEP' AND P_ORIGEM = 'TICKETSHOP' THEN APPS.TKT_OKC_BACEN_PKG.PROCESSAR_TEP_CONTRATO(P_SISTEMA_ORIGEM => P_ORIGEM, P_CONTRATO_ID => P_CORRELATION);
-      WHEN P_ORIGEM = 'SIMULADOR' AND P_ORIGEM = 'SALESFORCE' THEN APPS.TKT_OKC_BACEN_PKG.PROCESSAR_CN_CONTRATO(P_SISTEMA_ORIGEM => P_ORIGEM, P_CONTRATO_ID => P_CORRELATION);
-      WHEN P_ORIGEM = 'NGAT' THEN APPS.TKT_OKC_BACEN_PKG.PROCESSAR_NGAT_CONTRATO(P_SISTEMA_ORIGEM => P_ORIGEM, P_CONTRATO_ID => P_CORRELATION);
-    END CASE;
-    COMMIT;
-END;
+	-- PROCESSAR CONTRATO AVULSO
+	PROCEDURE TKT_ATENDIMENTO_PROC_CONTRATO (P_CORRELATION          IN     NUMBER
+											,P_ORIGEM               IN     VARCHAR2)
+	IS
+	  BEGIN
+		CASE
+		  WHEN P_ORIGEM = 'TEP' AND P_ORIGEM = 'TICKETSHOP' THEN APPS.TKT_OKC_BACEN_PKG.PROCESSAR_TEP_CONTRATO(P_SISTEMA_ORIGEM => P_ORIGEM, P_CONTRATO_ID => P_CORRELATION);
+		  WHEN P_ORIGEM = 'SIMULADOR' AND P_ORIGEM = 'SALESFORCE' THEN APPS.TKT_OKC_BACEN_PKG.PROCESSAR_CN_CONTRATO(P_SISTEMA_ORIGEM => P_ORIGEM, P_CONTRATO_ID => P_CORRELATION);
+		  WHEN P_ORIGEM = 'NGAT' THEN APPS.TKT_OKC_BACEN_PKG.PROCESSAR_NGAT_CONTRATO(P_SISTEMA_ORIGEM => P_ORIGEM, P_CONTRATO_ID => P_CORRELATION);
+		END CASE;
+		COMMIT;
+	END;
 
--- REQUEST COM APOIO DA TABELA TEMPORÁRIA
-PROCEDURE TKT_ATENDIMENTO_REQUEST_BUREAU (P_CHAMADO              IN     VARCHAR2) 
+	-- REQUEST COM APOIO DA TABELA TEMPORÁRIA
+	PROCEDURE TKT_ATENDIMENTO_REQUEST_BUREAU (P_CHAMADO              IN     VARCHAR2)
 
-IS
+	IS
 
-  CURSOR CUR_CLI_CPF IS
-        SELECT CNPJ CPF, A.ORG_ID ORG, MAX(REQUEST_ID) REQUEST
-        FROM TKT.TKT_BACEN_CLI_ALL A
-        WHERE A.STATUS_PROCESSAMENTO = 'SOLICITADA HIGIENIZACAO'
-          AND A.TIPO_INSCR = 1
-          AND A.CLIENTE_ID IN (SELECT VALOR1
-                               FROM APPS.TKT_CONTR_CLI_PEDIDO B
-                               WHERE COMENTARIO = P_CHAMADO)
-  GROUP BY CNPJ, A.ORG_ID;
-  --
-  CURSOR CUR_CLI_CNPJ IS
-        SELECT CNPJ CNPJ, A.ORG_ID ORG, MAX(REQUEST_ID) REQUEST
-        FROM TKT.TKT_BACEN_CLI_ALL A
-        WHERE A.STATUS_PROCESSAMENTO = 'SOLICITADA HIGIENIZACAO'
-          AND A.TIPO_INSCR = 2
-          AND A.CLIENTE_ID IN (SELECT VALOR1
-                               FROM APPS.TKT_CONTR_CLI_PEDIDO B
-                               WHERE COMENTARIO = P_CHAMADO)
-  GROUP BY CNPJ, A.ORG_ID;
-  --
-  CURSOR CUR_ESTAB IS
-       SELECT CNPJ CNPJ, A.ORG_ID ORG, MAX(REQUEST_ID) REQUEST
-        FROM TKT.TKT_BACEN_ESTAB_ALL A
-        WHERE A.STATUS_PROCESSAMENTO = 'SOLICITADA HIGIENIZACAO'
-          AND A.ESTABELECIMENTO_ID IN (SELECT VALOR1
-                                       FROM APPS.TKT_CONTR_CLI_PEDIDO B
-                                       WHERE COMENTARIO = P_CHAMADO)
-  GROUP BY CNPJ, A.ORG_ID;
+	  CURSOR CUR_CLI_CPF IS
+			SELECT CNPJ CPF, A.ORG_ID ORG, MAX(REQUEST_ID) REQUEST
+			FROM TKT.TKT_BACEN_CLI_ALL A
+			WHERE A.STATUS_PROCESSAMENTO = 'SOLICITADA HIGIENIZACAO'
+			  AND A.TIPO_INSCR = 1
+			  AND A.CLIENTE_ID IN (SELECT VALOR1
+								   FROM APPS.TKT_CONTR_CLI_PEDIDO B
+								   WHERE COMENTARIO = P_CHAMADO)
+	  GROUP BY CNPJ, A.ORG_ID;
+	  --
+	  CURSOR CUR_CLI_CNPJ IS
+			SELECT CNPJ CNPJ, A.ORG_ID ORG, MAX(REQUEST_ID) REQUEST
+			FROM TKT.TKT_BACEN_CLI_ALL A
+			WHERE A.STATUS_PROCESSAMENTO = 'SOLICITADA HIGIENIZACAO'
+			  AND A.TIPO_INSCR = 2
+			  AND A.CLIENTE_ID IN (SELECT VALOR1
+								   FROM APPS.TKT_CONTR_CLI_PEDIDO B
+								   WHERE COMENTARIO = P_CHAMADO)
+	  GROUP BY CNPJ, A.ORG_ID;
+	  --
+	  CURSOR CUR_ESTAB IS
+		   SELECT CNPJ CNPJ, A.ORG_ID ORG, MAX(REQUEST_ID) REQUEST
+			FROM TKT.TKT_BACEN_ESTAB_ALL A
+			WHERE A.STATUS_PROCESSAMENTO = 'SOLICITADA HIGIENIZACAO'
+			  AND A.ESTABELECIMENTO_ID IN (SELECT VALOR1
+										   FROM APPS.TKT_CONTR_CLI_PEDIDO B
+										   WHERE COMENTARIO = P_CHAMADO)
+	  GROUP BY CNPJ, A.ORG_ID;
 
-  L_NREQUESTID NUMBER;
-  L_NREQUESTID NUMBER;
+	  L_NREQUESTID NUMBER;
+	  L_NREQUESTID NUMBER;
 
-  R_CURSOR_C_CPF   CUR_CLI_CPF%ROWTYPE;
-  R_CURSOR_C_CNPJ  CUR_CLI_CNPJ%ROWTYPE;
-  R_CURSOR_ESTAB   CUR_ESTAB%ROWTYPE;
+	  R_CURSOR_C_CPF   CUR_CLI_CPF%ROWTYPE;
+	  R_CURSOR_C_CNPJ  CUR_CLI_CNPJ%ROWTYPE;
+	  R_CURSOR_ESTAB   CUR_ESTAB%ROWTYPE;
 
-  BEGIN
-    OPEN CUR_CLI_CPF;
-    LOOP
-      FETCH CUR_CLI_CPF
-        INTO R_CURSOR_C_CPF;
-      EXIT WHEN CUR_CLI_CPF%NOTFOUND;
+	  BEGIN
+		OPEN CUR_CLI_CPF;
+		LOOP
+		  FETCH CUR_CLI_CPF
+			INTO R_CURSOR_C_CPF;
+		  EXIT WHEN CUR_CLI_CPF%NOTFOUND;
 
-      APPS.TKT_HIGIENIZ_UTIL_PKG.CREATE_REQUEST_P( P_SYSTEM_SOURCE      => 'ERP'
-                                                 , P_SUBSYSTEM_SOURCE   => 'STAGING-CUSTOMERS'
-                                                 , P_ORG_ID             => R_CURSOR_C_CPF.ORG
-                                                 , P_TYPE               => 'C'
-                                                 , P_THIRD_PARTY_TYPE   => 'CPF'
-                                                 , P_THIRD_PARTY_NUMBER => R_CURSOR_C_CPF.CPF
-                                                 , P_THIRD_PARTY_ID     => 1
-                                                 , P_PERSON_BIRTH_DATE  => '29-OUT-1969'
-                                                 , P_REQUEST_ID         => R_CURSOR_C_CPF.REQUEST
-                                                 );
+		  APPS.TKT_HIGIENIZ_UTIL_PKG.CREATE_REQUEST_P( P_SYSTEM_SOURCE      => 'ERP'
+													 , P_SUBSYSTEM_SOURCE   => 'STAGING-CUSTOMERS'
+													 , P_ORG_ID             => R_CURSOR_C_CPF.ORG
+													 , P_TYPE               => 'C'
+													 , P_THIRD_PARTY_TYPE   => 'CPF'
+													 , P_THIRD_PARTY_NUMBER => R_CURSOR_C_CPF.CPF
+													 , P_THIRD_PARTY_ID     => 1
+													 , P_PERSON_BIRTH_DATE  => '29-OUT-1969'
+													 , P_REQUEST_ID         => R_CURSOR_C_CPF.REQUEST
+													 );
 
-      --
-      DBMS_OUTPUT.PUT_LINE('R_CURSOR_C_CPF.REQUEST: ' ||
-                           R_CURSOR_C_CPF.REQUEST);
-    END LOOP;
-    CLOSE CUR_CLI_CPF;
+		  --
+		  DBMS_OUTPUT.PUT_LINE('R_CURSOR_C_CPF.REQUEST: ' ||
+							   R_CURSOR_C_CPF.REQUEST);
+		END LOOP;
+		CLOSE CUR_CLI_CPF;
 
-    OPEN CUR_CLI_CNPJ;
-    LOOP
-      FETCH CUR_CLI_CNPJ
-        INTO R_CURSOR_C_CNPJ;
-      EXIT WHEN CUR_CLI_CNPJ%NOTFOUND;
+		OPEN CUR_CLI_CNPJ;
+		LOOP
+		  FETCH CUR_CLI_CNPJ
+			INTO R_CURSOR_C_CNPJ;
+		  EXIT WHEN CUR_CLI_CNPJ%NOTFOUND;
 
-      APPS.TKT_HIGIENIZ_UTIL_PKG.CREATE_REQUEST_P( P_SYSTEM_SOURCE      => 'ERP'
-                                                   , P_SUBSYSTEM_SOURCE   => 'STAGING-CUSTOMERS'
-                                                   , P_ORG_ID             => R_CURSOR_C_CNPJ.ORG
-                                                   , P_TYPE               => 'C'
-                                                   , P_THIRD_PARTY_TYPE   => 'CNPJ'
-                                                   , P_THIRD_PARTY_NUMBER => R_CURSOR_C_CNPJ.CNPJ
-                                                   , P_THIRD_PARTY_ID     => 1
-                                                   , P_REQUEST_ID         => R_CURSOR_C_CNPJ.REQUEST
-                                                   );
+		  APPS.TKT_HIGIENIZ_UTIL_PKG.CREATE_REQUEST_P( P_SYSTEM_SOURCE      => 'ERP'
+													   , P_SUBSYSTEM_SOURCE   => 'STAGING-CUSTOMERS'
+													   , P_ORG_ID             => R_CURSOR_C_CNPJ.ORG
+													   , P_TYPE               => 'C'
+													   , P_THIRD_PARTY_TYPE   => 'CNPJ'
+													   , P_THIRD_PARTY_NUMBER => R_CURSOR_C_CNPJ.CNPJ
+													   , P_THIRD_PARTY_ID     => 1
+													   , P_REQUEST_ID         => R_CURSOR_C_CNPJ.REQUEST
+													   );
 
-      --
-      DBMS_OUTPUT.PUT_LINE('R_CURSOR_C_CNPJ.REQUEST: ' || R_CURSOR_C_CNPJ.REQUEST);
-    END LOOP;
-    CLOSE CUR_CLI_CNPJ;
+		  --
+		  DBMS_OUTPUT.PUT_LINE('R_CURSOR_C_CNPJ.REQUEST: ' || R_CURSOR_C_CNPJ.REQUEST);
+		END LOOP;
+		CLOSE CUR_CLI_CNPJ;
 
-    OPEN CUR_ESTAB;
-    LOOP
-      FETCH CUR_ESTAB
-        INTO R_CURSOR_ESTAB;
-      EXIT WHEN CUR_ESTAB%NOTFOUND;
+		OPEN CUR_ESTAB;
+		LOOP
+		  FETCH CUR_ESTAB
+			INTO R_CURSOR_ESTAB;
+		  EXIT WHEN CUR_ESTAB%NOTFOUND;
 
-        APPS.TKT_HIGIENIZ_UTIL_PKG.CREATE_REQUEST_P( P_SYSTEM_SOURCE      => 'ERP'
-                                                   , P_SUBSYSTEM_SOURCE   => 'STAGING-CUSTOMERS'
-                                                   , P_ORG_ID             => R_CURSOR_ESTAB.ORG
-                                                   , P_TYPE               => 'C'
-                                                   , P_THIRD_PARTY_TYPE   => 'CNPJ'
-                                                   , P_THIRD_PARTY_NUMBER => R_CURSOR_ESTAB.CNPJ
-                                                   , P_THIRD_PARTY_ID     => 1
-                                                   , P_REQUEST_ID         => R_CURSOR_ESTAB.REQUEST
-                                                   );
+			APPS.TKT_HIGIENIZ_UTIL_PKG.CREATE_REQUEST_P( P_SYSTEM_SOURCE      => 'ERP'
+													   , P_SUBSYSTEM_SOURCE   => 'STAGING-CUSTOMERS'
+													   , P_ORG_ID             => R_CURSOR_ESTAB.ORG
+													   , P_TYPE               => 'C'
+													   , P_THIRD_PARTY_TYPE   => 'CNPJ'
+													   , P_THIRD_PARTY_NUMBER => R_CURSOR_ESTAB.CNPJ
+													   , P_THIRD_PARTY_ID     => 1
+													   , P_REQUEST_ID         => R_CURSOR_ESTAB.REQUEST
+													   );
 
-      --
-      DBMS_OUTPUT.PUT_LINE('R_CURSOR_ESTAB.REQUEST: ' || R_CURSOR_ESTAB.REQUEST);
-    END LOOP;
-    CLOSE CUR_ESTAB;
-  COMMIT;
-END;
+		  --
+		  DBMS_OUTPUT.PUT_LINE('R_CURSOR_ESTAB.REQUEST: ' || R_CURSOR_ESTAB.REQUEST);
+		END LOOP;
+		CLOSE CUR_ESTAB;
+	  COMMIT;
+	END;
 
--- REQUEST AVULSO
-PROCEDURE TKT_ATENDIMENTO_REQUEST_BUREAU (P_CORRELATION          IN     NUMBER
-                                         ,P_ORIGEM               IN     VARCHAR2) 
-IS
+	-- REQUEST AVULSO
+	PROCEDURE TKT_ATENDIMENTO_REQUEST_BUREAU (P_CORRELATION          IN     NUMBER
+											 ,P_ORIGEM               IN     VARCHAR2)
+	IS
 
-  CURSOR CUR_CLI_CPF IS
-        SELECT CNPJ CPF, A.ORG_ID ORG, MAX(REQUEST_ID) REQUEST
-        FROM TKT.TKT_BACEN_CLI_ALL A
-        WHERE A.STATUS_PROCESSAMENTO = 'SOLICITADA HIGIENIZACAO'
-          AND A.TIPO_INSCR = 1
-          AND A.SISTEMA_ORIGEM = P_ORIGEM
-          AND A.CLIENTE_ID = P_CORRELATION
-  GROUP BY CNPJ, A.ORG_ID;
-  --
-  CURSOR CUR_CLI_CNPJ IS
-        SELECT CNPJ CNPJ, A.ORG_ID ORG, MAX(REQUEST_ID) REQUEST
-        FROM TKT.TKT_BACEN_CLI_ALL A
-        WHERE A.STATUS_PROCESSAMENTO = 'SOLICITADA HIGIENIZACAO'
-          AND A.TIPO_INSCR = 2
-          AND A.SISTEMA_ORIGEM = P_ORIGEM
-          AND A.CLIENTE_ID = P_CORRELATION
-  GROUP BY CNPJ, A.ORG_ID;
-  --
-  CURSOR CUR_ESTAB IS
-       SELECT CNPJ CNPJ, A.ORG_ID ORG, MAX(REQUEST_ID) REQUEST
-        FROM TKT.TKT_BACEN_ESTAB_ALL A
-        WHERE A.STATUS_PROCESSAMENTO = 'SOLICITADA HIGIENIZACAO'
-          AND A.SISTEMA_ORIGEM = P_ORIGEM
-          AND A.ESTABELECIMENTO_ID = P_CORRELATION
-  GROUP BY CNPJ, A.ORG_ID;
+	  CURSOR CUR_CLI_CPF IS
+			SELECT CNPJ CPF, A.ORG_ID ORG, MAX(REQUEST_ID) REQUEST
+			FROM TKT.TKT_BACEN_CLI_ALL A
+			WHERE A.STATUS_PROCESSAMENTO = 'SOLICITADA HIGIENIZACAO'
+			  AND A.TIPO_INSCR = 1
+			  AND A.SISTEMA_ORIGEM = P_ORIGEM
+			  AND A.CLIENTE_ID = P_CORRELATION
+	  GROUP BY CNPJ, A.ORG_ID;
+	  --
+	  CURSOR CUR_CLI_CNPJ IS
+			SELECT CNPJ CNPJ, A.ORG_ID ORG, MAX(REQUEST_ID) REQUEST
+			FROM TKT.TKT_BACEN_CLI_ALL A
+			WHERE A.STATUS_PROCESSAMENTO = 'SOLICITADA HIGIENIZACAO'
+			  AND A.TIPO_INSCR = 2
+			  AND A.SISTEMA_ORIGEM = P_ORIGEM
+			  AND A.CLIENTE_ID = P_CORRELATION
+	  GROUP BY CNPJ, A.ORG_ID;
+	  --
+	  CURSOR CUR_ESTAB IS
+		   SELECT CNPJ CNPJ, A.ORG_ID ORG, MAX(REQUEST_ID) REQUEST
+			FROM TKT.TKT_BACEN_ESTAB_ALL A
+			WHERE A.STATUS_PROCESSAMENTO = 'SOLICITADA HIGIENIZACAO'
+			  AND A.SISTEMA_ORIGEM = P_ORIGEM
+			  AND A.ESTABELECIMENTO_ID = P_CORRELATION
+	  GROUP BY CNPJ, A.ORG_ID;
 
-  L_NREQUESTID NUMBER;
-  L_NREQUESTID NUMBER;
+	  L_NREQUESTID NUMBER;
+	  L_NREQUESTID NUMBER;
 
-  R_CURSOR_C_CPF   CUR_CLI_CPF%ROWTYPE;
-  R_CURSOR_C_CNPJ  CUR_CLI_CNPJ%ROWTYPE;
-  R_CURSOR_ESTAB   CUR_ESTAB%ROWTYPE;
+	  R_CURSOR_C_CPF   CUR_CLI_CPF%ROWTYPE;
+	  R_CURSOR_C_CNPJ  CUR_CLI_CNPJ%ROWTYPE;
+	  R_CURSOR_ESTAB   CUR_ESTAB%ROWTYPE;
 
-  BEGIN
-    OPEN CUR_CLI_CPF;
-    LOOP
-      FETCH CUR_CLI_CPF
-        INTO R_CURSOR_C_CPF;
-      EXIT WHEN CUR_CLI_CPF%NOTFOUND;
+	  BEGIN
+		OPEN CUR_CLI_CPF;
+		LOOP
+		  FETCH CUR_CLI_CPF
+			INTO R_CURSOR_C_CPF;
+		  EXIT WHEN CUR_CLI_CPF%NOTFOUND;
 
-      APPS.TKT_HIGIENIZ_UTIL_PKG.CREATE_REQUEST_P( P_SYSTEM_SOURCE      => 'ERP'
-                                                 , P_SUBSYSTEM_SOURCE   => 'STAGING-CUSTOMERS'
-                                                 , P_ORG_ID             => R_CURSOR_C_CPF.ORG
-                                                 , P_TYPE               => 'C'
-                                                 , P_THIRD_PARTY_TYPE   => 'CPF'
-                                                 , P_THIRD_PARTY_NUMBER => R_CURSOR_C_CPF.CPF
-                                                 , P_THIRD_PARTY_ID     => 1
-                                                 , P_PERSON_BIRTH_DATE  => '29-OUT-1969'
-                                                 , P_REQUEST_ID         => R_CURSOR_C_CPF.REQUEST
-                                                 );
+		  APPS.TKT_HIGIENIZ_UTIL_PKG.CREATE_REQUEST_P( P_SYSTEM_SOURCE      => 'ERP'
+													 , P_SUBSYSTEM_SOURCE   => 'STAGING-CUSTOMERS'
+													 , P_ORG_ID             => R_CURSOR_C_CPF.ORG
+													 , P_TYPE               => 'C'
+													 , P_THIRD_PARTY_TYPE   => 'CPF'
+													 , P_THIRD_PARTY_NUMBER => R_CURSOR_C_CPF.CPF
+													 , P_THIRD_PARTY_ID     => 1
+													 , P_PERSON_BIRTH_DATE  => '29-OUT-1969'
+													 , P_REQUEST_ID         => R_CURSOR_C_CPF.REQUEST
+													 );
 
-      --
-      DBMS_OUTPUT.PUT_LINE('R_CURSOR_C_CPF.REQUEST: ' ||
-                           R_CURSOR_C_CPF.REQUEST);
-    END LOOP;
-    CLOSE CUR_CLI_CPF;
+		  --
+		  DBMS_OUTPUT.PUT_LINE('R_CURSOR_C_CPF.REQUEST: ' ||
+							   R_CURSOR_C_CPF.REQUEST);
+		END LOOP;
+		CLOSE CUR_CLI_CPF;
 
-    OPEN CUR_CLI_CNPJ;
-    LOOP
-      FETCH CUR_CLI_CNPJ
-        INTO R_CURSOR_C_CNPJ;
-      EXIT WHEN CUR_CLI_CNPJ%NOTFOUND;
+		OPEN CUR_CLI_CNPJ;
+		LOOP
+		  FETCH CUR_CLI_CNPJ
+			INTO R_CURSOR_C_CNPJ;
+		  EXIT WHEN CUR_CLI_CNPJ%NOTFOUND;
 
-      APPS.TKT_HIGIENIZ_UTIL_PKG.CREATE_REQUEST_P( P_SYSTEM_SOURCE      => 'ERP'
-                                                   , P_SUBSYSTEM_SOURCE   => 'STAGING-CUSTOMERS'
-                                                   , P_ORG_ID             => R_CURSOR_C_CNPJ.ORG
-                                                   , P_TYPE               => 'C'
-                                                   , P_THIRD_PARTY_TYPE   => 'CNPJ'
-                                                   , P_THIRD_PARTY_NUMBER => R_CURSOR_C_CNPJ.CNPJ
-                                                   , P_THIRD_PARTY_ID     => 1
-                                                   , P_REQUEST_ID         => R_CURSOR_C_CNPJ.REQUEST
-                                                   );
+		  APPS.TKT_HIGIENIZ_UTIL_PKG.CREATE_REQUEST_P( P_SYSTEM_SOURCE      => 'ERP'
+													   , P_SUBSYSTEM_SOURCE   => 'STAGING-CUSTOMERS'
+													   , P_ORG_ID             => R_CURSOR_C_CNPJ.ORG
+													   , P_TYPE               => 'C'
+													   , P_THIRD_PARTY_TYPE   => 'CNPJ'
+													   , P_THIRD_PARTY_NUMBER => R_CURSOR_C_CNPJ.CNPJ
+													   , P_THIRD_PARTY_ID     => 1
+													   , P_REQUEST_ID         => R_CURSOR_C_CNPJ.REQUEST
+													   );
 
-      --
-      DBMS_OUTPUT.PUT_LINE('R_CURSOR_C_CNPJ.REQUEST: ' || R_CURSOR_C_CNPJ.REQUEST);
-    END LOOP;
-    CLOSE CUR_CLI_CNPJ;
+		  --
+		  DBMS_OUTPUT.PUT_LINE('R_CURSOR_C_CNPJ.REQUEST: ' || R_CURSOR_C_CNPJ.REQUEST);
+		END LOOP;
+		CLOSE CUR_CLI_CNPJ;
 
-    OPEN CUR_ESTAB;
-    LOOP
-      FETCH CUR_ESTAB
-        INTO R_CURSOR_ESTAB;
-      EXIT WHEN CUR_ESTAB%NOTFOUND;
+		OPEN CUR_ESTAB;
+		LOOP
+		  FETCH CUR_ESTAB
+			INTO R_CURSOR_ESTAB;
+		  EXIT WHEN CUR_ESTAB%NOTFOUND;
 
-        APPS.TKT_HIGIENIZ_UTIL_PKG.CREATE_REQUEST_P( P_SYSTEM_SOURCE      => 'ERP'
-                                                   , P_SUBSYSTEM_SOURCE   => 'STAGING-CUSTOMERS'
-                                                   , P_ORG_ID             => R_CURSOR_ESTAB.ORG
-                                                   , P_TYPE               => 'C'
-                                                   , P_THIRD_PARTY_TYPE   => 'CNPJ'
-                                                   , P_THIRD_PARTY_NUMBER => R_CURSOR_ESTAB.CNPJ
-                                                   , P_THIRD_PARTY_ID     => 1
-                                                   , P_REQUEST_ID         => R_CURSOR_ESTAB.REQUEST
-                                                   );
+			APPS.TKT_HIGIENIZ_UTIL_PKG.CREATE_REQUEST_P( P_SYSTEM_SOURCE      => 'ERP'
+													   , P_SUBSYSTEM_SOURCE   => 'STAGING-CUSTOMERS'
+													   , P_ORG_ID             => R_CURSOR_ESTAB.ORG
+													   , P_TYPE               => 'C'
+													   , P_THIRD_PARTY_TYPE   => 'CNPJ'
+													   , P_THIRD_PARTY_NUMBER => R_CURSOR_ESTAB.CNPJ
+													   , P_THIRD_PARTY_ID     => 1
+													   , P_REQUEST_ID         => R_CURSOR_ESTAB.REQUEST
+													   );
 
-      --
-      DBMS_OUTPUT.PUT_LINE('R_CURSOR_ESTAB.REQUEST: ' || R_CURSOR_ESTAB.REQUEST);
-    END LOOP;
-    CLOSE CUR_ESTAB;
-  COMMIT;
-END;
+		  --
+		  DBMS_OUTPUT.PUT_LINE('R_CURSOR_ESTAB.REQUEST: ' || R_CURSOR_ESTAB.REQUEST);
+		END LOOP;
+		CLOSE CUR_ESTAB;
+	  COMMIT;
+	END;
 --
-PROCEDURE TKT_ATENDIMENTO ( ERRBUF                 OUT    VARCHAR2
-                           ,RETCODE                OUT    NUMBER
-                           ,P_OPCAO                IN     NUMBER
-                           ,P_CORRELATION          IN     NUMBER
-                           ,P_ORIGEM               IN     VARCHAR2
-                           ,P_TIPO                 IN     VARCHAR2
-                           ,P_CHAMADO              IN     VARCHAR2) 
-IS
+	PROCEDURE TKT_ATENDIMENTO ( ERRBUF                 OUT    VARCHAR2
+							   ,RETCODE                OUT    NUMBER
+							   ,P_OPCAO                IN     NUMBER
+							   ,P_CORRELATION          IN     NUMBER
+							   ,P_ORIGEM               IN     VARCHAR2
+							   ,P_TIPO                 IN     VARCHAR2
+							   ,P_CHAMADO              IN     VARCHAR2)
+	IS
 
-  BEGIN
+	  BEGIN
 
-    --P_OPCAO = 0 MSG FILA AQ CLIENTE / ESTABELECIMENTO / CONTRATO / FATURA
-    --P_OPCAO = 1 PROCESSAR CONTRATO TEP / TICKETSHOP / SIMULADOR / SALESFORCE / NGAT
-    --P_OPCAO = 2 REQUEST BUREAU
+		--P_OPCAO = 0 MSG FILA AQ CLIENTE / ESTABELECIMENTO / CONTRATO / FATURA
+		--P_OPCAO = 1 PROCESSAR CONTRATO TEP / TICKETSHOP / SIMULADOR / SALESFORCE / NGAT
+		--P_OPCAO = 2 REQUEST BUREAU
 
-    --
-    IF P_OPCAO IN (0) THEN
-      IF P_CHAMADO IS NULL THEN
-         TKT_ATENDIMENTO_MSG(P_TIPO, P_CORRELATION, P_ORIGEM);
-      ELSE
-         TKT_ATENDIMENTO_MSG(P_TIPO, P_CHAMADO);
-      END IF;
-    END IF;
-    --
-    IF P_OPCAO IN (1) THEN
-      IF P_CHAMADO IS NULL THEN
-         TKT_ATENDIMENTO_PROC_CONTRATO (P_CORRELATION, P_ORIGEM);
-      ELSE
-         TKT_ATENDIMENTO_PROC_CONTRATO (P_CHAMADO);
-      END IF;
-    END IF;
-    --
-    IF P_OPCAO IN (2) THEN
-      IF P_CHAMADO IS NULL THEN
-         TKT_ATENDIMENTO_REQUEST_BUREAU (P_CORRELATION, P_ORIGEM);
-      ELSE
-         TKT_ATENDIMENTO_REQUEST_BUREAU (P_CHAMADO);
-      END IF;
-    END IF;
-    --
-END;
+		--
+		IF P_OPCAO IN (0) THEN
+		  IF P_CHAMADO IS NULL THEN
+			 TKT_ATENDIMENTO_MSG(P_TIPO, P_CORRELATION, P_ORIGEM);
+		  ELSE
+			 TKT_ATENDIMENTO_MSG(P_TIPO, P_CHAMADO);
+		  END IF;
+		END IF;
+		--
+		IF P_OPCAO IN (1) THEN
+		  IF P_CHAMADO IS NULL THEN
+			 TKT_ATENDIMENTO_PROC_CONTRATO (P_CORRELATION, P_ORIGEM);
+		  ELSE
+			 TKT_ATENDIMENTO_PROC_CONTRATO (P_CHAMADO);
+		  END IF;
+		END IF;
+		--
+		IF P_OPCAO IN (2) THEN
+		  IF P_CHAMADO IS NULL THEN
+			 TKT_ATENDIMENTO_REQUEST_BUREAU (P_CORRELATION, P_ORIGEM);
+		  ELSE
+			 TKT_ATENDIMENTO_REQUEST_BUREAU (P_CHAMADO);
+		  END IF;
+		END IF;
+		--
+	END;
 
 /*
 +===========================================================================+
-|  APOIO NA SUSTENTACAO:               					    |
-|  --------------------- 				                    |
-|  Objetivo: Enviar solicitação em massa dos casos que por algum motivo	    |
-|             nao retornaram para o ERP          			    |
-| 									    |										|
-| PACKAGE BODY:								    |
-| -------------								    | 
+|  APOIO NA SUSTENTACAO:                                                    |
+|  ---------------------                                                    |
+|  Objetivo: Enviar solicitação em massa dos casos que por algum motivo     |
+|             nao retornaram para o ERP                                     |
+|                                                                           |
+| PACKAGE BODY:                                                             |
+| -------------                                                             |
 | Alteracoes: Criacao de procedures sem parametros                          |
-| Data da atualizacao: 06/03/2020 					    |
-| Versao V_1								    |
-| Obs: Rotina de manutencao automatizada				    |
+| Data da atualizacao: 06/03/2020                                           |
+| Versao V_1                                                                |
+| Obs: Rotina de manutencao automatizada                                    |
 |                                                                           |
 | NOTES                                                                     |
-| Created by    Adriano Lima						    |
-| Date 			06/01/2020				            |
+| Created by    Adriano Lima                                                |
+| Date      06/01/2020                                                      |
 +===========================================================================+
-*/							
-       
-PROCEDURE PROC_SEM_RET_CNPJ AS
+*/
+
+   PROCEDURE TKT_PROC_SEM_RET_CNPJ AS
     BEGIN
      DECLARE
 
@@ -455,7 +454,7 @@ PROCEDURE PROC_SEM_RET_CNPJ AS
           CHECK_FAL1 INT := 0;
           G_COUNT NUMBER := 0;
           G_LIMIT NUMBER;
-          
+
 
           CURSOR CUR_BUREAU IS
             SELECT /*+ ALL_ROWS*/
@@ -493,7 +492,7 @@ PROCEDURE PROC_SEM_RET_CNPJ AS
           VCUR_CNPJ CUR_CNPJ%ROWTYPE;
 
       BEGIN
-		  SELECT VALOR40 INTO G_LIMIT FROM APPS.TKT_CONTR_CLI_PEDIDO WHERE VALOR40 IS NOT NULL;
+      SELECT VALOR40 INTO G_LIMIT FROM APPS.TKT_CONTR_CLI_PEDIDO WHERE VALOR40 IS NOT NULL;
           SELECT COUNT(*) INTO VCOUNT_CLI_SEM FROM APPS.TKT_BACEN_CLI_ALL BCA INNER JOIN APPS.TKT_HIGI_REQUEST_TRACKING THRT ON BCA.CNPJ = THRT.THIRD_PARTY_NUMBER WHERE 1=1 AND BCA.STATUS_PROCESSAMENTO = 'SOLICITADA HIGIENIZACAO' AND TRUNC(THRT.REQUEST_DATE) >= TRUNC(SYSDATE-7) AND ((TRUNC(BCA.PROGRAM_UPDATE_DATE) = TRUNC(SYSDATE-1)) OR (BCA.PROGRAM_UPDATE_DATE IS NULL)) AND BCA.SISTEMA_ORIGEM !=  'REPOM' AND BCA.TIPO_INSCR = 2 AND THRT.THIRD_PARTY_TYPE = 'CNPJ' AND THRT.STATUS_HIGIENIZACAO IS NULL AND THRT.STATUS_RECEITA_FEDERAL IS NULL AND THRT.REQUEST_DATE IN (SELECT MAX(THRT1.REQUEST_DATE) FROM APPS.TKT_HIGI_REQUEST_TRACKING THRT1 WHERE THRT1.THIRD_PARTY_NUMBER = THRT.THIRD_PARTY_NUMBER) AND BCA.CLIENTE_ID IN(SELECT MAX(BCA1.CLIENTE_ID)FROM APPS.TKT_BACEN_CLI_ALL BCA1 WHERE 1 = 1 AND BCA1.STATUS_PROCESSAMENTO = BCA.STATUS_PROCESSAMENTO AND BCA1.SISTEMA_ORIGEM = BCA.SISTEMA_ORIGEM AND BCA1.LAST_UPDATE_DATE = BCA1.LAST_UPDATE_DATE AND BCA1.CNPJ = BCA.CNPJ);
 
           IF (VCOUNT_CLI_SEM > 0)THEN
@@ -511,9 +510,9 @@ PROCEDURE PROC_SEM_RET_CNPJ AS
                   OPEN CUR_CNPJ;
                      LOOP
                        FETCH CUR_CNPJ INTO VCUR_CNPJ;
-                       EXIT WHEN CUR_CNPJ%NOTFOUND OR G_COUNT >= G_LIMIT;                  
+                       EXIT WHEN CUR_CNPJ%NOTFOUND OR G_COUNT >= G_LIMIT;
 
-                         UPDATE APPS.TKT_BACEN_CLI_ALL SET PROGRAM_UPDATE_DATE = SYSDATE WHERE CLIENTE_ID IN VCUR_CNPJ.CLIENTE_ID AND ((TRUNC(PROGRAM_UPDATE_DATE) = TRUNC(SYSDATE-1)) OR (PROGRAM_UPDATE_DATE IS NULL));                                      
+                         UPDATE APPS.TKT_BACEN_CLI_ALL SET PROGRAM_UPDATE_DATE = SYSDATE WHERE CLIENTE_ID IN VCUR_CNPJ.CLIENTE_ID AND ((TRUNC(PROGRAM_UPDATE_DATE) = TRUNC(SYSDATE-1)) OR (PROGRAM_UPDATE_DATE IS NULL));
                          APPS.TKT_HIGIENIZ_UTIL_PKG.CREATE_REQUEST_P( P_SYSTEM_SOURCE        => 'ERP'
                                                                       , P_SUBSYSTEM_SOURCE   => 'STAGING-CUSTOMERS'
                                                                       , P_ORG_ID             => VCUR_CNPJ.ORG
@@ -524,7 +523,7 @@ PROCEDURE PROC_SEM_RET_CNPJ AS
                                                                       , P_REQUEST_ID         => VCUR_BUREAU.REQUEST
                                                                      );
 
-                       
+
                        G_COUNT := G_COUNT + 1;
                        COMMIT;
                      END LOOP;
@@ -543,11 +542,11 @@ PROCEDURE PROC_SEM_RET_CNPJ AS
 
       END;
 
-  END PROC_SEM_RET_CNPJ;
+  END TKT_PROC_SEM_RET_CNPJ;
 -----------------------------------------------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------------------------------------------
-  PROCEDURE PROC_SEM_RET_CPF AS
-  
+  PROCEDURE TKT_PROC_SEM_RET_CPF AS
+
     BEGIN
       DECLARE
 
@@ -642,11 +641,11 @@ PROCEDURE PROC_SEM_RET_CNPJ AS
            DBMS_OUTPUT.PUT_LINE('LINHA: ' || DBMS_UTILITY.FORMAT_ERROR_BACKTRACE);
 
     END;
-	
-  END PROC_SEM_RET_CPF;
+
+  END TKT_PROC_SEM_RET_CPF;
 -----------------------------------------------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------------------------------------------
-  PROCEDURE PROC_SEM_RET_EST AS
+  PROCEDURE TKT_PROC_SEM_RET_EST AS
     BEGIN
       DECLARE
 
@@ -743,145 +742,147 @@ PROCEDURE PROC_SEM_RET_CNPJ AS
 
       END;
 
-  END PROC_SEM_RET_EST;
-  
+  END TKT_PROC_SEM_RET_EST;
+
 /*
 +===========================================================================+
-|  APOIO NA SUSTENTACAO:               					    |
-|  --------------------- 				                    |
+|  APOIO NA SUSTENTACAO:                                                    |
+|  ---------------------                                                    |
 |  Objetivo: Alterar o status do processamento na BACEN e CLI quando o      |
-| 			 Bureau retornar com erro para o ERP.		    |
-|									    |										|
-| PACKAGE SPECIFICATION:						    |
-| ----------------------						    | 
-|									    |
-| Data da atualizacao: 15/04/2020 					    |
-| Versao V_0								    |
-| 									    |										|
-|Obs dos parametros:							    |
-|P_PRINCIPAL  	=> CLI ou EST: Abreviação para cliente ou estabelecimento   |
-|P_REQUEST_ID 	=> Id da tabela						    |
-|P_STATUS_DESEJ => Status do Processamento				    |
+|        Bureau retornar com erro para o ERP.                               |
+|                                                                           |
+| PACKAGE SPECIFICATION:                                                    |
+| ----------------------                                                    |
+|                                                                           |
+| Data da atualizacao: 15/04/2020                                           |
+| Versao V_0                                                                |
+|                                                                           |
+|Obs dos parametros:                                                        |
+|P_PRINCIPAL    => CLI ou EST: Abreviação para cliente ou estabelecimento   |
+|P_REQUEST_ID   => Id da tabela                                             |
+|P_STATUS_DESEJ => Status do Processamento                                  |
 |                                                                           |
 | NOTES                                                                     |
-| Created by    Adriano Lima						    |
-| Date 			23/03/2020					    |
+| Created by    Adriano Lima                                                |
+| Date      23/03/2020                                                      |
 +===========================================================================+
 */
 
-	CREATE OR REPLACE PROCEDURE TKT_ATENDIMENTO_SINCRONISMO (P_PRINCIPAL    IN VARCHAR2,
-								 P_REQUEST_ID   IN NUMBER,                                                 
-							         P_STATUS_DESEJ IN VARCHAR2)
-	AS
-	BEGIN
-	  
-	  DECLARE
-	   		
-		EXC_OPERACAO EXCEPTION;
-		OPERACAO_ENT EXCEPTION;                                                            
+  PROCEDURE TKT_ATENDIMENTO_SINCRONISMO (P_PRINCIPAL    IN VARCHAR2,
+                                         P_REQUEST_ID   IN NUMBER,
+                                         P_STATUS_DESEJ IN VARCHAR2)
+  AS
+  BEGIN
 
-		CURSOR CLI IS                                                                                                           
-		 SELECT BCA.CLIENTE_ID, BCA.STATUS_PROCESSAMENTO
-		  FROM APPS.TKT_BACEN_CLI_ALL BCA 
-		   WHERE BCA.CLIENTE_ID = P_REQUEST_ID;
+    DECLARE
 
-		   
-		CURSOR EST IS                                                                                                           
-		 SELECT TBEA.ESTABELECIMENTO_ID, TBEA.STATUS_PROCESSAMENTO
-		  FROM APPS.TKT_BACEN_ESTAB_ALL TBEA 
-		   WHERE TBEA.ESTABELECIMENTO_ID = P_REQUEST_ID;      
-		 
-							  
-		VCLI CLI%ROWTYPE;  
-		VEST EST%ROWTYPE;  
-		  
-		BEGIN                     
-		   
-		   IF P_PRINCIPAL NOT IN ('CLI','EST')THEN
-			 RAISE OPERACAO_ENT;
-		   END IF;  
-					   
-		   IF P_PRINCIPAL = 'CLI' THEN
-			 
-				  BEGIN
-						EXECUTE IMMEDIATE 'ALTER TRIGGER APPS.TKT_BACEN_CLI_B_AU_TRG DISABLE';      
-				  END;
+    EXC_OPERACAO EXCEPTION;
+    OPERACAO_ENT EXCEPTION;
 
-				  OPEN CLI;
-					 LOOP
-					   FETCH CLI INTO VCLI;
-					   EXIT WHEN CLI%NOTFOUND;
+    CURSOR CLI IS
+     SELECT BCA.CLIENTE_ID, BCA.STATUS_PROCESSAMENTO
+      FROM APPS.TKT_BACEN_CLI_ALL BCA
+       WHERE BCA.CLIENTE_ID = P_REQUEST_ID;
 
-						   IF P_STATUS_DESEJ NOT IN ('ERRO','SOLICITADA HIGIENIZACAO','HIGIENIZADO_PARCIAL','HIGIENIZADO')THEN                
-							 RAISE EXC_OPERACAO;
-						   ELSE              
-					   
-							  UPDATE APPS.TKT_BACEN_CLI_ALL SET ATTRIBUTE5 = NULL, STATUS_PROCESSAMENTO = P_STATUS_DESEJ WHERE CLIENTE_ID = P_REQUEST_ID AND STATUS_PROCESSAMENTO = VCLI.STATUS_PROCESSAMENTO;  
-							 COMMIT;
-						   END IF;
-							 
-					 END LOOP;
-				  CLOSE CLI;
-				  
-				  BEGIN
-						EXECUTE IMMEDIATE 'ALTER TRIGGER APPS.TKT_BACEN_CLI_B_AU_TRG ENABLE';
-				  END;
-				  
-			ELSE
-				  BEGIN
-						EXECUTE IMMEDIATE 'ALTER TRIGGER APPS.TKT_BACEN_ESTAB_B_AU_TRG DISABLE';      
-				  END;
-											
-				  OPEN EST;     
-						   
-					 LOOP
-					   FETCH EST INTO VEST;
-					   EXIT WHEN EST%NOTFOUND;
-							
-						   IF P_STATUS_DESEJ NOT IN ('ERRO','SOLICITADA HIGIENIZACAO','HIGIENIZADO_PARCIAL','HIGIENIZADO')THEN                
-							 RAISE EXC_OPERACAO;
-						   ELSE  
-														   
-							  UPDATE APPS.TKT_BACEN_ESTAB_ALL SET ATTRIBUTE5 = NULL, STATUS_PROCESSAMENTO = P_STATUS_DESEJ WHERE ESTABELECIMENTO_ID = P_REQUEST_ID AND STATUS_PROCESSAMENTO = VEST.STATUS_PROCESSAMENTO;
-							 COMMIT;
-						   END IF;   
-												
-					 END LOOP;
-				  CLOSE EST;                   
-				  
-				  BEGIN
-						EXECUTE IMMEDIATE 'ALTER TRIGGER APPS.TKT_BACEN_ESTAB_B_AU_TRG ENABLE';
-				  END;  
-							  
-			END IF;
-									 
-			 EXCEPTION                      
-							   
-				WHEN EXC_OPERACAO THEN
-				   DBMS_OUTPUT.PUT_LINE('A OPERACAO NÃO PODE SER CONCLUÍDA PORQUE OS VALORES INFORMADOS NÃO SÃO VÁLIDOS, VOCÊ DEVE INFORMAR UM DOS VALORES ABAIXO:');
-				   DBMS_OUTPUT.NEW_LINE;
-				   DBMS_OUTPUT.PUT_LINE('ERRO');
-				   DBMS_OUTPUT.PUT_LINE('SOLICITADA HIGIENIZACAO');
-				   DBMS_OUTPUT.PUT_LINE('HIGIENIZADO_PARCIAL');
-				   DBMS_OUTPUT.PUT_LINE('HIGIENIZADO');
-				  ROLLBACK;
-				  
-				WHEN OPERACAO_ENT THEN
-				  
-				   DBMS_OUTPUT.PUT_LINE('PARA CLIENTE, VOCÊ DE INFORMAR: CLI');
-				   DBMS_OUTPUT.NEW_LINE;
-				   DBMS_OUTPUT.PUT_LINE('PARA ESTABELECIEMTNO, VOCÊ DE INFORMAR: EST');
-				  ROLLBACK;               
-							   
-				WHEN OTHERS THEN
-				   DBMS_OUTPUT.PUT_LINE('CODIGO DO ERRO'||SQLCODE||' MSG '||SQLERRM);
-				   DBMS_OUTPUT.PUT_LINE('LINHA: ' || DBMS_UTILITY.FORMAT_ERROR_BACKTRACE);
-		
-		END;
-		
-	END TKT_ATENDIMENTO_SINCRONISMO;  
+
+    CURSOR EST IS
+     SELECT TBEA.ESTABELECIMENTO_ID, TBEA.STATUS_PROCESSAMENTO
+      FROM APPS.TKT_BACEN_ESTAB_ALL TBEA
+       WHERE TBEA.ESTABELECIMENTO_ID = P_REQUEST_ID;
+
+
+    VCLI CLI%ROWTYPE;
+    VEST EST%ROWTYPE;
+
+    BEGIN
+
+       IF P_PRINCIPAL NOT IN ('CLI','EST')THEN
+       RAISE OPERACAO_ENT;
+       END IF;
+
+       IF P_PRINCIPAL = 'CLI' THEN
+
+          BEGIN
+            EXECUTE IMMEDIATE 'ALTER TRIGGER APPS.TKT_BACEN_CLI_B_AU_TRG DISABLE';
+          END;
+
+          OPEN CLI;
+           LOOP
+             FETCH CLI INTO VCLI;
+             EXIT WHEN CLI%NOTFOUND;
+
+               IF P_STATUS_DESEJ NOT IN ('ERRO','SOLICITADA HIGIENIZACAO','HIGIENIZADO_PARCIAL','HIGIENIZADO')THEN
+               RAISE EXC_OPERACAO;
+               ELSE
+
+                UPDATE APPS.TKT_BACEN_CLI_ALL SET ATTRIBUTE5 = NULL, STATUS_PROCESSAMENTO = P_STATUS_DESEJ WHERE CLIENTE_ID = P_REQUEST_ID AND STATUS_PROCESSAMENTO = VCLI.STATUS_PROCESSAMENTO;
+               COMMIT;
+               END IF;
+
+           END LOOP;
+          CLOSE CLI;
+
+          BEGIN
+            EXECUTE IMMEDIATE 'ALTER TRIGGER APPS.TKT_BACEN_CLI_B_AU_TRG ENABLE';
+          END;
+
+      ELSE
+          BEGIN
+            EXECUTE IMMEDIATE 'ALTER TRIGGER APPS.TKT_BACEN_ESTAB_B_AU_TRG DISABLE';
+          END;
+
+          OPEN EST;
+
+           LOOP
+             FETCH EST INTO VEST;
+             EXIT WHEN EST%NOTFOUND;
+
+               IF P_STATUS_DESEJ NOT IN ('ERRO','SOLICITADA HIGIENIZACAO','HIGIENIZADO_PARCIAL','HIGIENIZADO')THEN
+               RAISE EXC_OPERACAO;
+               ELSE
+
+                UPDATE APPS.TKT_BACEN_ESTAB_ALL SET ATTRIBUTE5 = NULL, STATUS_PROCESSAMENTO = P_STATUS_DESEJ WHERE ESTABELECIMENTO_ID = P_REQUEST_ID AND STATUS_PROCESSAMENTO = VEST.STATUS_PROCESSAMENTO;
+               COMMIT;
+               END IF;
+
+           END LOOP;
+          CLOSE EST;
+
+          BEGIN
+            EXECUTE IMMEDIATE 'ALTER TRIGGER APPS.TKT_BACEN_ESTAB_B_AU_TRG ENABLE';
+          END;
+
+      END IF;
+
+       EXCEPTION
+
+        WHEN EXC_OPERACAO THEN
+           DBMS_OUTPUT.PUT_LINE('A OPERACAO NÃO PODE SER CONCLUÍDA PORQUE OS VALORES INFORMADOS NÃO SÃO VÁLIDOS, VOCÊ DEVE INFORMAR UM DOS VALORES ABAIXO:');
+           DBMS_OUTPUT.NEW_LINE;
+           DBMS_OUTPUT.PUT_LINE('ERRO');
+           DBMS_OUTPUT.PUT_LINE('SOLICITADA HIGIENIZACAO');
+           DBMS_OUTPUT.PUT_LINE('HIGIENIZADO_PARCIAL');
+           DBMS_OUTPUT.PUT_LINE('HIGIENIZADO');
+          ROLLBACK;
+
+        WHEN OPERACAO_ENT THEN
+
+           DBMS_OUTPUT.PUT_LINE('PARA CLIENTE, VOCÊ DE INFORMAR: CLI');
+           DBMS_OUTPUT.NEW_LINE;
+           DBMS_OUTPUT.PUT_LINE('PARA ESTABELECIEMTNO, VOCÊ DE INFORMAR: EST');
+          ROLLBACK;
+
+        WHEN OTHERS THEN
+           DBMS_OUTPUT.PUT_LINE('CODIGO DO ERRO'||SQLCODE||' MSG '||SQLERRM);
+           DBMS_OUTPUT.PUT_LINE('LINHA: ' || DBMS_UTILITY.FORMAT_ERROR_BACKTRACE);
+
+    END;
+
+  END TKT_ATENDIMENTO_SINCRONISMO;
 
 END TKT_ATENDIMENTO_PKG;
-/
---NAO REMOVER INDICADOR DE FINAL DE ARQUIVO
+
+
+
+
 
